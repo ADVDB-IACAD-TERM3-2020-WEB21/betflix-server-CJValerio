@@ -404,9 +404,17 @@ webpackContext.id = "./src sync recursive ^\\.\\/(schema|schema\\/index)\\.(gql|
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 // TODO: Import Mongoose here
-// TODO: Connect to mongo here
-// TODO: Replace `{}` with actual Movie model
-const Movie = {};
+var mongoose = __webpack_require__(/*! mongoose */ "mongoose"); // TODO: Connect to mongo here
+
+
+mongoose.connect('mongodb://localhost/test', {
+  useNewUrlParser: true
+}); // TODO: Replace `{}` with actual Movie model
+
+var model = mongoose.model('Movie', new mongoose.Schema({
+  title: String
+}));
+const Movie = model;
 
 const getMovieList = async () => {
   return await Movie.find({});
@@ -432,8 +440,8 @@ const resolvers = {
 /***/ (function(module, exports) {
 
 
-    var doc = {"kind":"Document","definitions":[{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"Movie"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"title"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},"directives":[]}]},{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"Query"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"movies"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Movie"}}}}},"directives":[]}]}],"loc":{"start":0,"end":68}};
-    doc.loc.source = {"body":"type Movie {\n  title: String!\n}\n\ntype Query {\n  movies: [Movie!]!\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+    var doc = {"kind":"Document","definitions":[{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"Movie"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"title"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},"directives":[]}]},{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"Query"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"movies"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Movie"}}}}},"directives":[]}]}],"loc":{"start":0,"end":75}};
+    doc.loc.source = {"body":"type Movie {\r\n  title: String!\r\n}\r\n\r\ntype Query {\r\n  movies: [Movie!]!\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
   
 
     var names = {};
@@ -545,6 +553,17 @@ module.exports = require("friendly-errors-webpack-plugin");
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ "mongoose":
+/*!***************************!*\
+  !*** external "mongoose" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("mongoose");
 
 /***/ }),
 
